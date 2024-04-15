@@ -118,7 +118,7 @@ namespace LMSAPI.Controllers
               new Dictionary<string, string>{
                 { "role",user.Role },
                 { "idnumber",user.IdNumber },
-                { "login-method", "rfid"}
+                { "login_method", "rfid"}
               }
             );
           }
@@ -139,7 +139,7 @@ namespace LMSAPI.Controllers
               new Dictionary<string, string>{
                 { "role",user.Role },
                 { "idnumber",user.IdNumber },
-                { "login-method", "normal"}
+                { "login_method", "normal"}
               }
             );
           }

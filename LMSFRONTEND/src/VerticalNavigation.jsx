@@ -16,7 +16,7 @@ const menuItems = [
   { path: "/equipment", label: "Equipment", color: "#ffc107", icon: faLaptop },
   { path: "/borrowed-books", label: "Borrowed Books", icon: faBookOpen },
   {
-    path: "/borrowed-equipment",
+    path: "/borrowed-equipments",
     label: "Borrowed Equipment",
     icon: faHouseLaptop,
   },

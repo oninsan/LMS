@@ -45,4 +45,6 @@
 .active {
   background: linear-gradient(135deg, #2786f2 10%, #49c628 100%);
   border-radius: 2px;
+  color: rgba(37, 53, 112, 0.862) !important;
+  font-weight: bold;
 }

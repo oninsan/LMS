@@ -7,9 +7,17 @@ export const LoggedUserProvider = ({ children }) => {
     role: sessionStorage.getItem("role"),
     idnumber: sessionStorage.getItem("idnumber"),
     login_method: sessionStorage.getItem("login_method"),
+    firstName: sessionStorage.getItem("firstName"),
+    lastName: sessionStorage.getItem("lastName"),
   });
 
-  const setLoggedUserDetails = ({ role, idnumber, login_method }) => {
+  const setLoggedUserDetails = ({
+    role,
+    idnumber,
+    login_method,
+    firstName,
+    lastName,
+  }) => {
     setLoggedUser((prevUser) => ({
       ...prevUser,
       role: role,
@@ -19,11 +27,9 @@ export const LoggedUserProvider = ({ children }) => {
     sessionStorage.setItem("role", role);
     sessionStorage.setItem("idnumber", idnumber);
     sessionStorage.setItem("login_method", login_method);
+    sessionStorage.setItem("firstName", firstName);
+    sessionStorage.setItem("lastName", lastName);
   };
-
-  useEffect(() => {
-    console.log(loggedUser);
-  }, [loggedUser.idnumber]);
 
   return (
     <LoggedUserContext.Provider

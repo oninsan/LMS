@@ -5,3 +5,44 @@
 .user-dropdown {
   border: none;
 }
+
+.nv-btn {
+  background: linear-gradient(135deg, #2786f2 20%, #49c628 100%);
+  border: none;
+  color: white;
+  font-weight: bold;
+}
+
+.nv-btn:hover {
+  background: linear-gradient(135deg, #2786f2 10%, #49c628 100%);
+  border: none;
+}
+
+.nav-link {
+  transition: all 0.3s ease;
+}
+
+/* .nav-link:hover {
+  transform: scale(1.1);
+  cursor: pointer;
+} */
+
+.navigation-section {
+  background: rgba(34, 77, 232, 0.862);
+}
+
+.vert-nav-section {
+  /* background: rgba(65, 106, 255, 0.862); */
+  background: rgb(62, 62, 172);
+}
+
+.nav-item-custom {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.active {
+  background: linear-gradient(135deg, #2786f2 10%, #49c628 100%);
+  border-radius: 2px;
+}

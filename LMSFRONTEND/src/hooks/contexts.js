@@ -1,6 +1,5 @@
 import React, { useContext, useState } from "react";
 import { LoggedUserContext } from "./provider";
-import { useNavigate } from "react-router-dom";
 const formatDate = (date) => {
   return `${date.getFullYear()}-${(date.getMonth() + 1)
     .toString()

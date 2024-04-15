@@ -1,10 +1,14 @@
 import { Container, Row, Col } from "reactstrap";
 import "../assets/css/LoginCss.css";
-import { useLogin } from "../hooks/contexts";
+import { useLogin, useGetLoggedUser } from "../hooks/contexts";
 import Logo from "../assets/img/logo.png";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const LoginPage = () => {
   const [creds, setLoginCreds, onSubmit] = useLogin();
+  const navigate = useNavigate();
+
   const { idnumber, key } = creds;
   return (
     <Container fluid className="login-page">
@@ -19,7 +23,16 @@ const LoginPage = () => {
                 <h2>LCCTO-LMS</h2>
               </Row>
             </Row>
-            <form onSubmit={(e) => onSubmit(e)}>
+            <form
+              onSubmit={async (e) => {
+                if (await onSubmit(e)) {
+                  navigate("/home");
+                  toast.success("Login successful");
+                } else {
+                  toast.error("Wrong password or student number");
+                }
+              }}
+            >
               <input
                 type="text"
                 name="idnumber"

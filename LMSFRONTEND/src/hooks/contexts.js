@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
-import { LoggedUserProvider } from "./provider";
-
+import { LoggedUserContext } from "./provider";
+import { useNavigate } from "react-router-dom";
 const formatDate = (date) => {
   return `${date.getFullYear()}-${(date.getMonth() + 1)
     .toString()
@@ -20,7 +20,7 @@ const formatTime = (date) => {
 };
 
 export const useGetLoggedUser = () => {
-  const loggedUser = useContext(LoggedUserProvider);
+  const { loggedUser } = useContext(LoggedUserContext);
   if (loggedUser === undefined) {
     throw new Error("useGlobalState must be used within a GlobalStateProvider");
   }
@@ -28,6 +28,7 @@ export const useGetLoggedUser = () => {
 };
 
 export const useLogin = () => {
+  const { loggedUser, setLoggedUser } = useContext(LoggedUserContext);
   const [creds, setCreds] = useState({
     idnumber: "",
     key: "",
@@ -45,12 +46,35 @@ export const useLogin = () => {
   };
 
   const onSubmit = async (e) => {
+    let isSuccess = false;
     e.preventDefault();
     try {
-      console.log(creds);
+      const res = await fetch(
+        `http://localhost:5086/api/Client/NormalLogin?idnumber=${creds.idnumber}&userkey=${creds.key}&attendancedate=${creds.attendancedate}&timein=${creds.timein}`,
+        {
+          method: "POST",
+        }
+      );
+
+      if (res.ok) {
+        isSuccess = true;
+        const data = await res.json();
+        setLoggedUser(data);
+        setCreds((currentCreds) => ({
+          ...currentCreds,
+          idnumber: "",
+          key: "",
+          attendancedate: "",
+          timein: "",
+        }));
+      } else {
+        console.error(res);
+      }
     } catch (error) {
       console.error(error);
     }
+    console.log(isSuccess);
+    return isSuccess;
   };
 
   return [creds, setLoginCreds, onSubmit];

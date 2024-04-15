@@ -4,13 +4,11 @@ import { FontAwesomeIcon as Icon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import logo from "./assets/img/logo.png";
 import "./assets/css/NavigationBarCss.css";
-import {
-  faBars,
-  faNewspaper,
-  faSearch,
-} from "@fortawesome/free-solid-svg-icons";
+import { faBars } from "@fortawesome/free-solid-svg-icons";
+import { useGetLoggedUser } from "./hooks/contexts";
 
 const NavigationBar = () => {
+  const { loggedUser, setLoggedUser } = useGetLoggedUser();
   return (
     <>
       <Col className="" lg={4} md={3} sm={2} xs={2}>
